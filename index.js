@@ -4,7 +4,7 @@ const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 3000;
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = `mongodb+srv://DwellMateDBUser:${process.env.DB_PASSWORD}@dwellmate.lzqu57f.mongodb.net/?retryWrites=true&w=majority&appName=DwellMate`;
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@dwellmate.lzqu57f.mongodb.net/?retryWrites=true&w=majority&appName=DwellMate`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -19,12 +19,22 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+
+    const propertyCollection = client.db("DwellMateDB").collection("properties");
+
+    app.post("/properties", async (request, response) => {
+      const newProperty = request.body;
+      const result = await propertyCollection.insertOne(newProperty);
+
+      response.send(result);
+    })
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
     // Ensures that the client will close when you finish/error
-    await client.close();
+    // await client.close();
   }
 }
 run().catch(console.dir);
@@ -34,9 +44,9 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (request, response) => {
-    response.send("DwellMate is running...")
+  response.send("DwellMate is running...")
 })
 
 app.listen(port, () => {
-    console.log(`DwellMate is running on port: ${port}`)
+  console.log(`DwellMate is running on port: ${port}`)
 })

@@ -22,12 +22,21 @@ async function run() {
 
     const propertyCollection = client.db("DwellMateDB").collection("properties");
 
+    // POSTING AN ADD OF PROPERTY
     app.post("/properties", async (request, response) => {
       const newProperty = request.body;
       const result = await propertyCollection.insertOne(newProperty);
 
       response.send(result);
     })
+
+    //TO  GET ALL THE PROPERTIES
+    app.get("/properties", async (request, response) => {
+      const result = await propertyCollection.find().toArray();
+
+      response.send(result);
+    }
+    )
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

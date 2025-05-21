@@ -3,7 +3,7 @@ const cors = require('cors');
 const app = express();
 require('dotenv').config();
 const port = process.env.PORT || 3000;
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@dwellmate.lzqu57f.mongodb.net/?retryWrites=true&w=majority&appName=DwellMate`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -35,8 +35,16 @@ async function run() {
       const result = await propertyCollection.find().toArray();
 
       response.send(result);
-    }
-    )
+    })
+
+    // TO GET SPECIFIC PROPERTY USING ID
+    app.get("/properties/:id", async(request, response) => {
+      const id = request.params.id;
+      const query = {_id: new ObjectId(id)}
+      const result = await propertyCollection.findOne(query);
+
+      response.send(result);
+  })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

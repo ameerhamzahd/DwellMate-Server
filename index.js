@@ -40,7 +40,7 @@ async function run() {
     // TO GET SPECIFIC PROPERTY USING ID
     app.get("/properties/:id", async (request, response) => {
       const id = request.params.id;
-      const query = { _id: new ObjectId(id) }
+      const query = { _id: new ObjectId(id) };
       const result = await propertyCollection.findOne(query);
 
       response.send(result);
@@ -65,6 +65,15 @@ async function run() {
       const updatedDoc = {
           $set: updatedProperty
       }
+
+      // TO DELETE PROPERTY
+      app.delete("/properties/:id", async(request, response) => {
+        const id = request.params.id;
+        const query = { _id: new ObjectId(id) };
+        const result = await propertyCollection.deleteOne(query);
+
+        response.send(result);
+      })
 
       const result = await propertyCollection.updateOne(filter, updatedDoc, options);
       response.send(result);

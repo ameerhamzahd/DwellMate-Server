@@ -56,28 +56,28 @@ async function run() {
     })
 
     // TO UPDATE PROPERTY DETAILS
-    app.put("/properties/:id", async(request, response) => {
+    app.put("/properties/:id", async (request, response) => {
       const id = request.params.id;
-      const filter = {_id: new ObjectId(id)};
-      const options = {upsert: true};
-      
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+
       const updatedProperty = request.body;
       const updatedDoc = {
-          $set: updatedProperty
+        $set: updatedProperty
       }
-
-      // TO DELETE PROPERTY
-      app.delete("/properties/:id", async(request, response) => {
-        const id = request.params.id;
-        const query = { _id: new ObjectId(id) };
-        const result = await propertyCollection.deleteOne(query);
-
-        response.send(result);
-      })
 
       const result = await propertyCollection.updateOne(filter, updatedDoc, options);
       response.send(result);
-  })
+    })
+
+    // FOR LIMIT OPERATOR
+    app.get("/properties/listings/:availability", async(request, response) => {
+      const available = request.params.availability;
+      const query = { availability: "Available" };
+      const result = await propertyCollection.find(query).limit(6).toArray();
+
+      response.send(result);
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

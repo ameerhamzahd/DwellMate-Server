@@ -62,11 +62,11 @@ async function run() {
       const options = {upsert: true};
       
       const updatedProperty = request.body;
-      const updatedPropertyDoc = {
+      const updatedDoc = {
           $set: updatedProperty
       }
 
-      const result = await propertyCollection.updateOne(filter, updatedPropertyDoc, options);
+      const result = await propertyCollection.updateOne(filter, updatedDoc, options);
       response.send(result);
   })
 

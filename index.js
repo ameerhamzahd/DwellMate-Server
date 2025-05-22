@@ -38,11 +38,35 @@ async function run() {
     })
 
     // TO GET SPECIFIC PROPERTY USING ID
-    app.get("/properties/:id", async(request, response) => {
+    app.get("/properties/:id", async (request, response) => {
       const id = request.params.id;
-      const query = {_id: new ObjectId(id)}
+      const query = { _id: new ObjectId(id) }
       const result = await propertyCollection.findOne(query);
 
+      response.send(result);
+    })
+
+    // TO GET SPECIFIC PROPERTY USING EMAIL
+    app.get("/properties/user/:email", async (request, response) => {
+      const email = request.params.email;
+      const query = { email: email }
+      const result = await propertyCollection.find(query).toArray();
+
+      response.send(result);
+    })
+
+    // TO UPDATE PROPERTY DETAILS
+    app.put("/properties/:id", async(request, response) => {
+      const id = request.params.id;
+      const filter = {_id: new ObjectId(id)};
+      const options = {upsert: true};
+      
+      const updatedProperty = request.body;
+      const updatedPropertyDoc = {
+          $set: updatedProperty
+      }
+
+      const result = await propertyCollection.updateOne(filter, updatedPropertyDoc, options);
       response.send(result);
   })
 

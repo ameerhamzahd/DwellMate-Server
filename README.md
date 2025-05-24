@@ -27,7 +27,7 @@ The backend works in harmony with the frontend client built using React, Tailwin
 ## 🧰 Tech Stack
 
 - **Backend**: Node.js, Express.js
-- **Database**: MongoDB (with Mongoose)
+- **Database**: MongoDB
 - **Authentication**: Firebase
 - **Deployment**: Vercel
 
@@ -37,7 +37,7 @@ The backend works in harmony with the frontend client built using React, Tailwin
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/dwellmate-server.git
+   git clone https://github.com/ameerhamzahd/dwellmate-server.git
    cd dwellmate-server
 
 2. **Install dependencies:**:

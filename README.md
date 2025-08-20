@@ -1,4 +1,4 @@
-# DwellMate Server 🛠️
+# DwellMate Server
 
 The **DwellMate Server** is the backend service powering the roommate-matching platform, **DwellMate**. It handles user data, listing management, authentication (via Firebase), and API endpoints using a secure and scalable Node.js environment.
 
@@ -6,25 +6,25 @@ Built with **Express.js** and **MongoDB**, the server supports efficient data tr
 
 ---
 
-## 🔗 Connected Frontend Repository
+## Connected Frontend Repository
 
-👉 **DwellMate Client**: [View Frontend Repository](https://github.com/ameerhamzahd/dwellmate-client)
+**DwellMate Client**: [View Frontend Repository](https://github.com/ameerhamzahd/DwellMate.git)
 
 The backend works in harmony with the frontend client built using React, Tailwind CSS, and Firebase. Please ensure both client and server are configured and running correctly for a seamless experience.
 
 ---
 
-## 📦 Features
+## Features
 
-- 🌐 **RESTful API Endpoints** – Manage users, listings, and interactions
-- 🧑‍💼 **User & Roommate Listings** – Fetch and post user-generated listings
-- 🔐 **Secure Environment** – Configurable using `.env` and integrates with Firebase for user management
-- ⚙️ **CORS and Middleware Support** – Supports modern HTTP methods and cross-origin requests
-- 🚀 **Vercel-Ready** – Easily deployable on Vercel using `vercel.json`
+- **RESTful API Endpoints** – Manage users, listings, and interactions
+- **User & Roommate Listings** – Fetch and post user-generated listings
+- **Secure Environment** – Configurable using `.env` and integrates with Firebase for user management
+- **CORS and Middleware Support** – Supports modern HTTP methods and cross-origin requests
+- **Vercel-Ready** – Easily deployable on Vercel using `vercel.json`
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
@@ -33,7 +33,7 @@ The backend works in harmony with the frontend client built using React, Tailwin
 
 ---
 
-## 🛠️ Installation & Local Development
+## Installation & Local Development
 
 1. **Clone the repository**:
    ```bash
@@ -56,7 +56,7 @@ The backend works in harmony with the frontend client built using React, Tailwin
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 1. **Install Vercel CLI (if not already)**:
     ```bash
@@ -72,19 +72,19 @@ The backend works in harmony with the frontend client built using React, Tailwin
 
 ---
 
-## 📬 Contact
+## Contact
 
 For issues or suggestions, please contact: ameerhamzah.daiyan@gmail.com
 
 ---
 
-## 📄 License
+## License
 
 -This project is licensed under the MIT License.
 
 ---
 
-## ✨ Acknowledgements
+## Acknowledgements
 
 Thanks to Firebase, Tailwind, and the React ecosystem for powering this project.
 
